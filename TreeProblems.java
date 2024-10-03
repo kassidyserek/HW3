@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** KASS SEREK / COMP272 002 ***
  *
  * This java file contains several simple tree problems that need to be
  * codified. These routines  must use the TreeMap and TreeSet library
@@ -11,54 +11,64 @@ import java.util.*;
 
 public class TreeProblems {
 
-  /**
-   * Method different()
-   *
-   * Given two TreeSets of integers, return a TreeSet containing all elements 
-   * that are NOT in both sets. In other words, return a TreeSet of all the
-   * elements that are in one set but not the other.
-   */
-  
-  public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
+    /**
+     * Method different()
+     *
+     * Given two TreeSets of integers, return a TreeSet containing all elements
+     * that are NOT in both sets. In other words, return a TreeSet of all the
+     * elements that are in one set but not the other.
+     */
 
-    // INSERT CODE HERE - DO NOT FORGET TO PLACE YOUR NAME ABOVE
-    //
-    // This can be done numerous ways, but once such will only that
-    // *several* lines of code. Hint: create two temporary TreeSets and utilize the
-    // methods retainAll(), addAll(), and removeAll(). But in the end, get something to work.
+    public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
+        // create two temporary sets to hold the elements of each set
+        Set<Integer> tempA = new TreeSet<>(setA);
+        Set<Integer> tempB = new TreeSet<>(setB);
 
-    return setA;
-  }
+        // combine both sets
+        tempA.addAll(tempB);
 
+        // create a new set for intersection
+        Set<Integer> intersection = new TreeSet<>(setA);
+        intersection.retainAll(setB);
 
-  /**
-   * Method removeEven()
-   *
-   * Given a treeMap with the key as an integer, and the value as a String,
-   * remove all <key, value> pairs where the key is even. 
-   */
+        // remove the common elements from the combined set
+        tempA.removeAll(intersection);
 
-  public static void removeEven(Map<Integer, String> treeMap) {
-
-    // INSERT CODE HERE.
-
-    return;
-  }
+        // return the result
+        return tempA;
+    }
 
 
-  /**
-   * Method treesEqual()
-   *
-   * Given two treeMaps, each with the key as an integer, and the value as a String,
-   * return a boolean value indicating if the two trees are equal or not.
-   */
+    /**
+     * Method removeEven()
+     *
+     * Given a treeMap with the key as an integer, and the value as a String,
+     * remove all <key, value> pairs where the key is even.
+     */
 
-  public boolean treesEqual(Map<Integer, String> tree1,Map<Integer, String> tree2 ) {
+    public static void removeEven(Map<Integer, String> treeMap) {
+        Iterator<Integer> iterator = treeMap.keySet().iterator();
 
-    // INSERT CODE HERE
+        // iterate iver the keys and remove even ones
+        while (iterator.hasNext()) {
+            int key = iterator.next();
+            if (key % 2 == 0) {
+                iterator.remove();
+            }
+        }
+    }
 
-    return false;
 
-  }
+    /**
+     * Method treesEqual()
+     *
+     * Given two treeMaps, each with the key as an integer, and the value as a String,
+     * return a boolean value indicating if the two trees are equal or not.
+     */
+
+    public boolean treesEqual(Map<Integer, String> tree1,Map<Integer, String> tree2 ) {
+        // use the equals method to compare both maps
+        return tree1.equals(tree2);
+    }
 
 } // end treeProblems class
